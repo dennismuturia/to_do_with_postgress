@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import org.sql2o.*;
 
 public class Category {
   private String name;
@@ -14,8 +15,11 @@ public class Category {
     return name;
   }
 
-  public static ArrayList<Category> all() {
-
+  public static List<Category> all() {
+    String sql = "SELECT id, name FROM categories";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Category.class);
+    }
   }
 
  public static void clear() {

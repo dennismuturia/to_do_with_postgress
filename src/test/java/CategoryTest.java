@@ -10,6 +10,13 @@ public class CategoryTest {
   }
 
   @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Category firstCategory = new Category("Household chores");
+    Category secondCategory = new Category("Household chores");
+    assertTrue(firstCategory.equals(secondCategory));
+  }
+
+  @Test
   public void category_instantiatesCorrectly_true() {
     Category testCategory = new Category("Home");
     assertEquals(true, testCategory instanceof Category);
