@@ -75,11 +75,14 @@ public class TaskTest {
     assertTrue(Task.all().get(0).equals(myTask));
   }
 
+
   @After
-  public void tearDown(){
-    try(Connection con = DB.sql2o.open()){
-      String sql = "DELETE FROM tasks *;";
-      con.createQuery(sql).executeUpdate();
+  public void tearDown() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteTasksQuery = "DELETE FROM tasks *;";
+      String deleteCategoriesQuery = "DELETE FROM categories *;";
+      con.createQuery(deleteTasksQuery).executeUpdate();
+      con.createQuery(deleteCategoriesQuery).executeUpdate();
     }
   }
 
