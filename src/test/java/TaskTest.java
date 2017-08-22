@@ -62,6 +62,14 @@ public class TaskTest {
     Task secondTask = new Task("Buy groceries");
     assertEquals(Task.find(secondTask.getId()), secondTask);
   }
+
+  @Test
+  public void save_returnsTrueIfDescriptionsAretheSame() {
+    Task myTask = new Task("Mow the lawn");
+    myTask.save();
+    assertTrue(Task.all().get(0).equals(myTask));
+  }
+
   @After
   public void tearDown(){
     try(Connection con = DB.sql2o.open()){
